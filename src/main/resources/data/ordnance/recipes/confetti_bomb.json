@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " GN",
+    "IDG",
+    "NI "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "I": {
+      "item": "minecraft:paper"
+    },
+    "D": {
+      "tag": "c:dyes"
+    }
+  },
+  "result": {
+    "item": "ordnance:confetti_bomb",
+    "count": 4
+  }
+}

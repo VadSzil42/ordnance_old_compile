@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "ordnance:dynamite"
+    },
+    {
+      "item": "ordnance:dynamite"
+    },
+    {
+      "item": "ordnance:dynamite"
+    },
+    {
+      "item": "ordnance:dynamite"
+    }
+  ],
+  "result": {
+    "item": "minecraft:tnt",
+    "count": 1
+  }
+}

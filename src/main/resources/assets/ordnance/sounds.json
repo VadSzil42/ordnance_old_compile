@@ -1,0 +1,20 @@
+{
+  "spring_hammer_squeak": {
+    "subtitle": "sound.ordnance.spring_hammer_squeak",
+    "sounds": [
+      "ordnance:spring_hammer_squeak"
+    ]
+  },
+  "six_shooter_shoot": {
+    "subtitle": "sound.ordnance.six_shooter_shoot",
+    "sounds": [
+      "ordnance:six_shooter_shoot"
+    ]
+  },
+  "six_shooter_reload": {
+    "subtitle": "sound.ordnance.six_shooter_reload",
+    "sounds": [
+      "ordnance:six_shooter_reload"
+    ]
+  }
+}

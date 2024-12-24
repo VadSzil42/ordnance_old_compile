@@ -1,24 +1,82 @@
 package com.nitron.ordnance;
 
+import com.nitron.ordnance.common.items.hammers.SpringHammerItem;
+import com.nitron.ordnance.registration.ModEntities;
+import com.nitron.ordnance.registration.ModItems;
 import net.fabricmc.api.ModInitializer;
-
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Ordnance implements ModInitializer {
 	public static final String MOD_ID = "ordnance";
-
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	private static final Identifier BASTION_TREASURE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/bastion_treasure");
+	private static final Identifier BASTION_OTHER_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/bastion_other");
+
+	public static DefaultParticleType CONFETTI;
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		ModEntities.init();
+		ModItems.init();
 
-		LOGGER.info("Hello Fabric world!");
+		UniformLootNumberProvider lootTableRange = UniformLootNumberProvider.create(1, 1);
+		LootCondition chanceLootCondition = RandomChanceLootCondition.builder(60).build();
+		LootTableEvents.MODIFY.register(((resourceManager, lootManager, identifier, builder, lootTableSource) -> {
+			if (BASTION_TREASURE_CHEST_LOOT_TABLE_ID.equals(identifier)) {
+				LootPool lootPool = LootPool.builder()
+						.rolls(lootTableRange)
+						.conditionally(chanceLootCondition)
+						.with(ItemEntry.builder(ModItems.IGNITED_IDOL).build()).build();
+
+				builder.pool(lootPool);
+			}
+		}));
+
+		UniformLootNumberProvider lootTableRange1 = UniformLootNumberProvider.create(0, 1);
+		LootCondition chanceLootCondition1 = RandomChanceLootCondition.builder(10).build();
+		LootTableEvents.MODIFY.register(((resourceManager, lootManager, identifier, builder, lootTableSource) -> {
+			if (BASTION_OTHER_CHEST_LOOT_TABLE_ID.equals(identifier)) {
+				LootPool lootPool = LootPool.builder()
+						.rolls(lootTableRange1)
+						.conditionally(chanceLootCondition1)
+						.with(ItemEntry.builder(ModItems.ANCIENT_UPGRADE_TEMPLATE).build()).build();
+				builder.pool(lootPool);
+			}
+		}));
+
+		CONFETTI = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "confetti"), FabricParticleTypes.simple(true));
 	}
+
+	public static final SoundEvent spring_hammer_squeak = registerSound("spring_hammer_squeak");
+	public static final SoundEvent six_shooter_reload = registerSound("six_shooter_reload");
+	public static final SoundEvent six_shooter_shoot = registerSound("six_shooter_shoot");
+
+	private static SoundEvent registerSound(String id) {
+		Identifier identifier = Identifier.of(MOD_ID, id);
+		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
+	}
+
+	public static Identifier id(String path) {
+		return new Identifier(MOD_ID, path);
+	}
+
 }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "ordnance:ignited_idol"
+  },
+  "base": {
+    "item": "minecraft:trident"
+  },
+  "result": {
+    "item": "ordnance:sunflare"
+  },
+  "template": {
+    "item": "ordnance:ancient_upgrade_template"
+  }
+}
