@@ -30,7 +30,7 @@ public class Dynamite extends Item {
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!user.getAbilities().creativeMode) {
             itemStack.decrement(1);
-            user.getItemCooldownManager().set(this, 20);
+            user.getItemCooldownManager().set(this, 40);
         }
         return TypedActionResult.success(itemStack, world.isClient());
     }

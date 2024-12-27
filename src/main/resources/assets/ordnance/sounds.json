@@ -16,5 +16,11 @@
     "sounds": [
       "ordnance:six_shooter_reload"
     ]
+  },
+  "freedom": {
+    "subtitle": "sound.ordnance.freedom",
+    "sounds": [
+      "ordnance:freedom"
+    ]
   }
 }

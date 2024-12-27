@@ -31,11 +31,11 @@ public abstract class ItemRendererMixin {
 
     @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
     public BakedModel useNebularkModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        if (stack.isOf(ModItems.NEBULARK) && renderMode != ModelTransformationMode.GUI && renderMode != ModelTransformationMode.GROUND) {
+        if (stack.isOf(ModItems.NEBULON) && renderMode != ModelTransformationMode.GUI && renderMode != ModelTransformationMode.GROUND) {
             if(MinecraftClient.getInstance().player.isUsingItem()){
-                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulark_handheld_flipped", "inventory"));
+                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld_flipped", "inventory"));
             } else{
-                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulark_handheld", "inventory"));
+                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld", "inventory"));
             }
         }
         return value;

@@ -1,6 +1,7 @@
 package com.nitron.ordnance.common.entities.projectiles;
 
 import com.google.common.collect.Sets;
+import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.client.OrdnanceDamageTypes;
 import com.nitron.ordnance.registration.ModEntities;
 import net.minecraft.entity.EntityType;
@@ -34,9 +35,12 @@ public class BulletEntity extends PersistentProjectileEntity {
         this.hasNoGravity();
         this.setNoGravity(true);
         if(this.getWorld() instanceof ServerWorld world){
-            world.spawnParticles(ParticleTypes.SONIC_BOOM, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 1);
+            world.spawnParticles(Ordnance.BEAM, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 1);
         }
         if(this.age >= 200){
+            this.discard();
+        }
+        if(this.isTouchingWater()){
             this.discard();
         }
         super.tick();

@@ -1,10 +1,8 @@
 package com.nitron.ordnance.client.renderers;
 
 import com.nitron.ordnance.Ordnance;
-import com.nitron.ordnance.client.models.NebularkModel;
-import com.nitron.ordnance.client.models.SunflareModel;
-import com.nitron.ordnance.common.entities.projectiles.NebularkEntity;
-import com.nitron.ordnance.common.entities.projectiles.SunflareEntity;
+import com.nitron.ordnance.client.models.NebulonModel;
+import com.nitron.ordnance.common.entities.projectiles.NebulonEntity;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -14,22 +12,22 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
-public class NebularkRenderer extends EntityRenderer<NebularkEntity> {
-    private static final Identifier TEXTURE = new Identifier(Ordnance.MOD_ID, "textures/entity/nebulark.png");
-    private final NebularkModel model;
+public class NebulonRenderer extends EntityRenderer<NebulonEntity> {
+    private static final Identifier TEXTURE = new Identifier(Ordnance.MOD_ID, "textures/entity/nebulon.png");
+    private final NebulonModel model;
 
-    public NebularkRenderer(EntityRendererFactory.Context ctx) {
+    public NebulonRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
-        this.model = new NebularkModel(NebularkModel.getTexturedModelData().createModel());
+        this.model = new NebulonModel(NebulonModel.getTexturedModelData().createModel());
     }
 
     @Override
-    public Identifier getTexture(NebularkEntity entity) {
+    public Identifier getTexture(NebulonEntity entity) {
         return TEXTURE;
     }
 
     @Override
-    public void render(NebularkEntity tridentEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+    public void render(NebulonEntity tridentEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         super.render(tridentEntity, f, g, matrixStack, vertexConsumerProvider, i);
         matrixStack.push();
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, tridentEntity.prevYaw, tridentEntity.getYaw()) - 90.0F));

@@ -2,8 +2,7 @@ package com.nitron.ordnance.common.items.tridents;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.nitron.ordnance.common.entities.projectiles.NebularkEntity;
-import com.nitron.ordnance.common.entities.projectiles.SunflareEntity;
+import com.nitron.ordnance.common.entities.projectiles.NebulonEntity;
 import com.nitron.ordnance.registration.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
@@ -38,10 +37,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class NebularkItem extends TridentItem implements Vanishable{
+public class NebulonItem extends TridentItem implements Vanishable{
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-    public NebularkItem(Settings settings) {
+    public NebulonItem(Settings settings) {
         super(settings);
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 10.0, EntityAttributeModifier.Operation.ADDITION));
@@ -64,8 +63,8 @@ public class NebularkItem extends TridentItem implements Vanishable{
         return 72000;
     }
 
-    public @NotNull NebularkEntity createTrident(World world, LivingEntity user, ItemStack stack) {
-        NebularkEntity trident = new NebularkEntity(world, user, stack);
+    public @NotNull NebulonEntity createTrident(World world, LivingEntity user, ItemStack stack) {
+        NebulonEntity trident = new NebulonEntity(world, user, stack);
         trident.setOwner(user);
         trident.setTridentStack(stack);
         trident.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.5F, 1.0F);
@@ -82,7 +81,7 @@ public class NebularkItem extends TridentItem implements Vanishable{
                     if (!world.isClient) {
                         stack.damage(1, player, livingEntity -> livingEntity.sendToolBreakStatus(user.getActiveHand()));
                         if (j == 0) {
-                            NebularkEntity trident = this.createTrident(world, player, stack);
+                            NebulonEntity trident = this.createTrident(world, player, stack);
                             if (player.getAbilities().creativeMode) {
                                 trident.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                             }
@@ -193,7 +192,7 @@ public class NebularkItem extends TridentItem implements Vanishable{
 
     @Override
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        if(stack.getItem().asItem() == ModItems.NEBULARK){
+        if(stack.getItem().asItem() == ModItems.NEBULON){
             if(otherStack.isEmpty() && clickType == ClickType.RIGHT){
                 player.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.PLAYERS, 1f, isLoyal(stack) ? 0.75f : 1f);
                 setLoyal(stack, !isLoyal(stack));

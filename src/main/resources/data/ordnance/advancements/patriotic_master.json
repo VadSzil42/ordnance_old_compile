@@ -1,0 +1,14 @@
+{
+  "display": {
+    "icon": {
+      "item": "ordnance:six-shooter"
+    },
+    "title": "Patriotic Master",
+    "description": "Sacrifice your sanity and craft a Six-Shooter",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "minecraft:adventure/root"
+}

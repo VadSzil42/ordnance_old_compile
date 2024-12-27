@@ -32,6 +32,7 @@ public class Ordnance implements ModInitializer {
 	private static final Identifier BASTION_OTHER_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/bastion_other");
 
 	public static DefaultParticleType CONFETTI;
+	public static DefaultParticleType BEAM;
 
 	@Override
 	public void onInitialize() {
@@ -64,11 +65,13 @@ public class Ordnance implements ModInitializer {
 		}));
 
 		CONFETTI = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "confetti"), FabricParticleTypes.simple(true));
+		BEAM = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "beam"), FabricParticleTypes.simple(true));
 	}
 
 	public static final SoundEvent spring_hammer_squeak = registerSound("spring_hammer_squeak");
 	public static final SoundEvent six_shooter_reload = registerSound("six_shooter_reload");
 	public static final SoundEvent six_shooter_shoot = registerSound("six_shooter_shoot");
+	public static final SoundEvent freedom = registerSound("freedom");
 
 	private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.of(MOD_ID, id);

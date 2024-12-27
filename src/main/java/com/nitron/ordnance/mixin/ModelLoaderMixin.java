@@ -24,10 +24,10 @@ public abstract class ModelLoaderMixin {
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;addModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 3, shift = At.Shift.AFTER))
     public void addOrdnanceItemModels(BlockColors blockColors, Profiler profiler, Map<Identifier, JsonUnbakedModel> jsonUnbakedModels, Map<Identifier, List<ModelLoader.SourceTrackedData>> blockStates, CallbackInfo ci) {
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "sunflare_handheld", "inventory"));
-        this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulark_handheld", "inventory"));
+        this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "spring_hammer_handheld", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "sunflare_handheld_flipped", "inventory"));
-        this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulark_handheld_flipped", "inventory"));
+        this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld_flipped", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_handheld", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_blocking", "inventory"));
     }

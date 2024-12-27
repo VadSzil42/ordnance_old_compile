@@ -7,7 +7,7 @@ import com.nitron.ordnance.common.items.common.BaseballBatItem;
 import com.nitron.ordnance.common.items.firearms.SixShooterItem;
 import com.nitron.ordnance.common.items.hammers.SpringHammerItem;
 import com.nitron.ordnance.common.items.smithing.AncientUpgradeTemplateItem;
-import com.nitron.ordnance.common.items.tridents.NebularkItem;
+import com.nitron.ordnance.common.items.tridents.NebulonItem;
 import com.nitron.ordnance.common.items.tridents.SunflareItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier;
 public class ModItems {
 
     public static Item SUNFLARE = registerItem("sunflare", new SunflareItem(new FabricItemSettings().maxCount(1).maxDamage(250)));
-    public static Item NEBULARK = registerItem("nebulark", new NebularkItem(new FabricItemSettings().maxCount(1).maxDamage(250)));
+    public static Item NEBULON = registerItem("nebulon", new NebulonItem(new FabricItemSettings().maxCount(1).maxDamage(250)));
     public static Item IGNITED_IDOL = registerItem("ignited_idol", new Item(new FabricItemSettings()));
     public static Item SPRING_HAMMER = registerItem("spring_hammer", new SpringHammerItem(ToolMaterials.DIAMOND, 4, -2.4F, new FabricItemSettings()));
     public static Item ANCIENT_UPGRADE_TEMPLATE = registerItem("ancient_upgrade_template", AncientUpgradeTemplateItem.createAncientUpgrade());
@@ -38,7 +38,8 @@ public class ModItems {
 
     public static void init(){
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
-            entries.addBefore(Items.TRIDENT, SUNFLARE);
+            entries.addAfter(Items.TRIDENT, SUNFLARE);
+            entries.addAfter(Items.TRIDENT, NEBULON);
             entries.addBefore(Items.SNOWBALL, CONFETTI_BOMB);
             entries.addBefore(Items.SNOWBALL, DYNAMITE);
             entries.addBefore(Items.SHIELD, SPRING_HAMMER);

@@ -12,44 +12,39 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class NebularkEntity extends TridentEntity {
+public class NebulonEntity extends TridentEntity {
     private static final TrackedData<Boolean> ENCHANTED;
     private ItemStack nebularkStack;
     private boolean dealtDamage;
     public int returnTimer;
 
-    public NebularkEntity(World world, LivingEntity owner, ItemStack stack) {
+    public NebulonEntity(World world, LivingEntity owner, ItemStack stack) {
         super(ModEntities.NEBULARK, world);
         this.nebularkStack = stack;
         this.setOwner(owner);
         if(this.nebularkStack == null){
-            this.nebularkStack = new ItemStack(ModItems.NEBULARK);
+            this.nebularkStack = new ItemStack(ModItems.NEBULON);
         }
     }
 
-    public NebularkEntity(EntityType<NebularkEntity> nebularkEntityEntityType, World world) {
+    public NebulonEntity(EntityType<NebulonEntity> nebularkEntityEntityType, World world) {
         super(nebularkEntityEntityType, world);
         if(this.nebularkStack == null){
-            this.nebularkStack = new ItemStack(ModItems.NEBULARK);
+            this.nebularkStack = new ItemStack(ModItems.NEBULON);
         }
     }
 
@@ -67,7 +62,7 @@ public class NebularkEntity extends TridentEntity {
             serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
         }
         if(this.nebularkStack == null){
-            this.nebularkStack = new ItemStack(ModItems.NEBULARK);
+            this.nebularkStack = new ItemStack(ModItems.NEBULON);
         }
         if (this.inGroundTime > 4) {
             this.dealtDamage = true;
@@ -230,6 +225,6 @@ public class NebularkEntity extends TridentEntity {
     }
 
     static {
-        ENCHANTED = DataTracker.registerData(NebularkEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+        ENCHANTED = DataTracker.registerData(NebulonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     }
 }

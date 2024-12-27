@@ -17,6 +17,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 
 public class DynamiteProjectileEntity extends ThrownItemEntity {
 
@@ -64,15 +65,14 @@ public class DynamiteProjectileEntity extends ThrownItemEntity {
 
     private void boom(){
         this.getWorld().sendEntityStatus(this, (byte)3);
-        BlockPos pos = this.getBlockPos();
         this.getWorld().createExplosion(
                 null,
                 null,
                 null,
-                pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5,
+                this.getX() + 0.5, this.getY(), this.getZ() + 0.5,
                 3,
                 false,
-                World.ExplosionSourceType.TNT
+                World.ExplosionSourceType.NONE
         );
         this.discard();
     }

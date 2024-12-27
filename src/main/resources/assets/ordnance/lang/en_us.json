@@ -6,15 +6,16 @@
   "item.ordnance.baseball_bat": "Baseball Bat",
   "item.ordnance.dynamite": "Dynamite",
   "item.ordnance.six-shooter": "Six-Shooter",
-  "item.ordnance.nebulark": "Nebulark",
+  "item.ordnance.nebulon": "Nebulon",
 
   "item.ordnance.smithing_template.ancient_upgrade.apply_to": "Tridents",
   "item.ordnance.smithing_template.ancient_upgrade.ingredients": "Ignited Idols",
   "upgrade.ordnance.ancient_upgrade": "Ancient Upgrade",
 
-  "sound.ordnance.six_shooter_reload": "Six-Shooter Reload",
-  "sound.ordnance.six_shooter_shoot": "Six-Shooter Shoot",
+  "sound.ordnance.six_shooter_reload": "Six-Shooter reloads",
+  "sound.ordnance.six_shooter_shoot": "Six-Shooter shoots",
   "sound.ordnance.spring_hammer_squeak": "Squeak",
+  "sound.ordnance.freedom": "Freedom rings",
 
   "death.attack.beamed": "%1$s's atoms were destroyed",
   "death.attack.beamed.player": "%1$s atoms were destroyed whilst fighting %2$s",

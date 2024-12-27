@@ -3,12 +3,15 @@ package com.nitron.ordnance.common.items.firearms;
 import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.common.entities.projectiles.BulletEntity;
 import com.nitron.ordnance.common.entities.projectiles.DynamiteProjectileEntity;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
@@ -39,6 +42,18 @@ public class SixShooterItem extends Item {
     }
 
     @Override
+    public void onCraft(ItemStack stack, World world, PlayerEntity player) {
+        world.playSoundFromEntity(null, player, Ordnance.freedom, SoundCategory.PLAYERS, 2, 1);
+        if(player instanceof ServerPlayerEntity serverPlayer){
+            Advancement advancement = serverPlayer.getServer().getAdvancementLoader().get(new Identifier("patriotic_master"));
+            for(String criterion : serverPlayer.getAdvancementTracker().getProgress(advancement).getUnobtainedCriteria()){
+                serverPlayer.getAdvancementTracker().grantCriterion(advancement, criterion);
+            }
+        }
+        super.onCraft(stack, world, player);
+    }
+
+    @Override
     public int getItemBarStep(ItemStack stack) {
         int value = stack.getOrCreateNbt().getInt(VALUE_KEY);
         return (int) Math.round(13.0F * (float) value / MAX_VALUE);
@@ -46,7 +61,7 @@ public class SixShooterItem extends Item {
 
     @Override
     public int getItemBarColor(ItemStack stack) {
-        return 0x8ef6e0;
+        return 0xccde6a;
     }
 
     @Override
