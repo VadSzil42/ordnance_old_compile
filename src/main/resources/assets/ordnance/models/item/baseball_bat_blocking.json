@@ -1,0 +1,42 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "ordnance:item/baseball_bat_handheld"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 0, 135],
+			"translation": [-7.75, -2, -0.75],
+			"scale": [1.7, 1.7, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -45],
+			"translation": [0, 12.5, 1],
+			"scale": [1.7, 1.7, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 0, 112.5],
+			"translation": [-8.62, 3.2, -0.62],
+			"scale": [1.7, 1.7, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, -45],
+			"translation": [5.13, 9.45, -3.62],
+			"scale": [1.7, 1.7, 1]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [-136.6, -14.39, -162.38],
+			"translation": [-1, -3.25, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"rotation": [90, -45, 90],
+			"translation": [5, -4.75, 0]
+		}
+	}
+}
