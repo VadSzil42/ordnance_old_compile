@@ -1,8 +1,7 @@
-package com.nitron.ordnance.common.items.firearms;
+package com.nitron.ordnance.common.items;
 
 import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.common.entities.projectiles.BulletEntity;
-import com.nitron.ordnance.common.entities.projectiles.DynamiteProjectileEntity;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

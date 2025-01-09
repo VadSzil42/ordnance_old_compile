@@ -26,26 +26,28 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class NebulonEntity extends TridentEntity {
-    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(NebulonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private ItemStack nebulonStack;
+public class PhantasmEntity extends TridentEntity {
+    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(PhantasmEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private ItemStack phantasmStack;
     private boolean dealtDamage;
     public int returnTimer;
 
-    public NebulonEntity(World world, LivingEntity owner, ItemStack stack) {
+    public PhantasmEntity(World world, LivingEntity owner, ItemStack stack) {
         super(ModEntities.NEBULON, world);
-        this.nebulonStack = stack;
+        this.phantasmStack = stack;
         this.setOwner(owner);
-        if(this.nebulonStack == null){
-            this.nebulonStack = new ItemStack(ModItems.NEBULON);
+        if(this.phantasmStack == null){
+            this.phantasmStack = new ItemStack(ModItems.PHANTASM);
         }
+        this.noClip = true;
     }
 
-    public NebulonEntity(EntityType<NebulonEntity> nebularkEntityEntityType, World world) {
+    public PhantasmEntity(EntityType<NebulonEntity> nebularkEntityEntityType, World world) {
         super(nebularkEntityEntityType, world);
-        if(this.nebulonStack == null){
-            this.nebulonStack = new ItemStack(ModItems.NEBULON);
+        if (this.phantasmStack == null){
+            this.phantasmStack = new ItemStack(ModItems.PHANTASM);
         }
+        this.noClip = true;
     }
 
     @Override
@@ -55,17 +57,12 @@ public class NebulonEntity extends TridentEntity {
     }
 
     @Override
-    public boolean hasNoGravity() {
-        return true;
-    }
-
-    @Override
     public void tick() {
         if(this.getWorld() instanceof ServerWorld serverWorld){
             serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
         }
-        if(this.nebulonStack == null){
-            this.nebulonStack = new ItemStack(ModItems.NEBULON);
+        if(this.phantasmStack == null){
+            this.phantasmStack = new ItemStack(ModItems.PHANTASM);
         }
         if (this.inGroundTime > 4) {
             this.dealtDamage = true;
@@ -79,7 +76,7 @@ public class NebulonEntity extends TridentEntity {
         }
 
         Entity entity = this.getOwner();
-        if (this.nebulonStack.getNbt() != null && this.nebulonStack.getOrCreateNbt().getBoolean("loyal") &&(this.dealtDamage || this.isNoClip()) && entity != null) {
+        if (this.phantasmStack.getNbt() != null && this.phantasmStack.getOrCreateNbt().getBoolean("loyal") &&(this.dealtDamage || this.isNoClip()) && entity != null) {
             if (!this.isOwnerAlive()) {
                 if (!this.getWorld().isClient && this.pickupType == PickupPermission.ALLOWED) {
                     this.dropStack(this.asItemStack(), 0.1F);
@@ -102,7 +99,7 @@ public class NebulonEntity extends TridentEntity {
 
 
     public void setTridentStack(ItemStack stack){
-        this.nebulonStack = stack;
+        this.phantasmStack = stack;
     }
 
 
@@ -117,7 +114,7 @@ public class NebulonEntity extends TridentEntity {
 
     @Override
     protected ItemStack asItemStack() {
-        return this.nebulonStack.copy();
+        return this.phantasmStack.copy();
     }
 
 
@@ -130,7 +127,7 @@ public class NebulonEntity extends TridentEntity {
         Entity entity = entityHitResult.getEntity();
         float f = 8.0F;
         if (entity instanceof LivingEntity livingEntity) {
-            f += EnchantmentHelper.getAttackDamage(this.nebulonStack, livingEntity.getGroup());
+            f += EnchantmentHelper.getAttackDamage(this.phantasmStack, livingEntity.getGroup());
         }
 
         Entity entity2 = this.getOwner();
@@ -174,21 +171,6 @@ public class NebulonEntity extends TridentEntity {
         this.playSound(soundEvent, g, 1.0F);
     }
 
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("Sunflare")) {
-            this.nebulonStack = ItemStack.fromNbt(nbt.getCompound("Sunflare"));
-        }
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        if (!this.nebulonStack.isEmpty()) {
-            nbt.put("Sunflare", this.nebulonStack.writeNbt(new NbtCompound()));
-        }
-    }
 
     @Override
     public void age() {
@@ -196,11 +178,6 @@ public class NebulonEntity extends TridentEntity {
             super.age();
         }
 
-    }
-
-    @Override
-    protected float getDragInWater() {
-        return 0.99F;
     }
 
     @Override

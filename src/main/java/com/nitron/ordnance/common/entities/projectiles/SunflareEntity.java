@@ -32,7 +32,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class SunflareEntity extends TridentEntity {
-    private static final TrackedData<Boolean> ENCHANTED;
+    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(SunflareEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private ItemStack sunflareStack;
     private boolean dealtDamage;
     public int returnTimer;
@@ -176,29 +176,6 @@ public class SunflareEntity extends TridentEntity {
         this.playSound(soundEvent, g, 1.0F);
     }
 
-
-    public boolean hasChanneling() {
-        return EnchantmentHelper.hasChanneling(this.sunflareStack);
-    }
-
-    @Override
-    protected boolean tryPickup(PlayerEntity player) {
-        return super.tryPickup(player) || this.isNoClip() && this.isOwner(player) && player.getInventory().insertStack(this.asItemStack());
-    }
-
-    @Override
-    protected SoundEvent getHitSound() {
-        return SoundEvents.ITEM_TRIDENT_HIT;
-    }
-
-    @Override
-    public void onPlayerCollision(PlayerEntity player) {
-        if (this.isOwner(player) || this.getOwner() == null) {
-            super.onPlayerCollision(player);
-        }
-
-    }
-
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
@@ -233,7 +210,4 @@ public class SunflareEntity extends TridentEntity {
         return true;
     }
 
-    static {
-        ENCHANTED = DataTracker.registerData(SunflareEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    }
 }

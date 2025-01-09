@@ -1,4 +1,4 @@
-package com.nitron.ordnance.common.items.hammers;
+package com.nitron.ordnance.common.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

@@ -1,10 +1,10 @@
-package com.nitron.ordnance.common.items.tridents;
+package com.nitron.ordnance.common.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.nitron.ordnance.common.entities.projectiles.NebulonEntity;
+import com.nitron.ordnance.common.entities.projectiles.SunflareEntity;
+import com.nitron.ordnance.compat.EnchancementCompat;
 import com.nitron.ordnance.registration.ModItems;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -18,9 +18,9 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.inventory.StackReference;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.TridentItem;
-import net.minecraft.item.Vanishable;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -28,7 +28,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -37,10 +36,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class NebulonItem extends TridentItem implements Vanishable{
+public class SunflareItem extends TridentItem {
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-    public NebulonItem(Settings settings) {
+    public SunflareItem(Item.Settings settings) {
         super(settings);
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 10.0, EntityAttributeModifier.Operation.ADDITION));
@@ -48,27 +47,13 @@ public class NebulonItem extends TridentItem implements Vanishable{
         this.attributeModifiers = builder.build();
     }
 
-    @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        return !miner.isCreative();
-    }
-
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.SPEAR;
-    }
-
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 72000;
-    }
-
-    public @NotNull NebulonEntity createTrident(World world, LivingEntity user, ItemStack stack) {
-        NebulonEntity trident = new NebulonEntity(world, user, stack);
+    public @NotNull SunflareEntity createTrident(World world, LivingEntity user, ItemStack stack) {
+        SunflareEntity trident = new SunflareEntity(world, user, stack);
         trident.setOwner(user);
         trident.setTridentStack(stack);
         trident.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.5F, 1.0F);
         trident.updatePosition(user.getX(), user.getEyeY() - 0.1, user.getZ());
+        EnchancementCompat.tryEnableEnchantments(user, stack, trident);
         return trident;
     }
 
@@ -81,7 +66,7 @@ public class NebulonItem extends TridentItem implements Vanishable{
                     if (!world.isClient) {
                         stack.damage(1, player, livingEntity -> livingEntity.sendToolBreakStatus(user.getActiveHand()));
                         if (j == 0) {
-                            NebulonEntity trident = this.createTrident(world, player, stack);
+                            SunflareEntity trident = this.createTrident(world, player, stack);
                             if (player.getAbilities().creativeMode) {
                                 trident.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                             }
@@ -97,6 +82,7 @@ public class NebulonItem extends TridentItem implements Vanishable{
                     player.incrementStat(Stats.USED.getOrCreateStat(this));
                     if (j > 0) {
                         player.getHungerManager().addExhaustion(6);
+                        player.setOnFireFor(3);
                         float f = player.getYaw();
                         float g = player.getPitch();
                         float h = -MathHelper.sin(f * 0.017453292F) * MathHelper.cos(g * 0.017453292F);
@@ -147,17 +133,6 @@ public class NebulonItem extends TridentItem implements Vanishable{
         return true;
     }
 
-    @Override
-    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        if ((double)state.getHardness(world, pos) != 0.0) {
-            stack.damage(2, miner, (e) -> {
-                e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-            });
-        }
-
-        return true;
-    }
-
     private void initializeLoyal(ItemStack stack) {
         if (!stack.getOrCreateNbt().contains("loyal")) {
             stack.getOrCreateNbt().putBoolean("loyal", true);
@@ -174,11 +149,6 @@ public class NebulonItem extends TridentItem implements Vanishable{
         return slot == EquipmentSlot.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(slot);
     }
 
-    @Override
-    public int getEnchantability() {
-        return 1;
-    }
-
     public boolean isLoyal(ItemStack stack) {
         if (stack.getNbt() == null) {
             setLoyal(stack,true);
@@ -192,7 +162,7 @@ public class NebulonItem extends TridentItem implements Vanishable{
 
     @Override
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        if(stack.getItem().asItem() == ModItems.NEBULON){
+        if(stack.getItem().asItem() == ModItems.SUNFLARE){
             if(otherStack.isEmpty() && clickType == ClickType.RIGHT){
                 player.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.PLAYERS, 1f, isLoyal(stack) ? 0.75f : 1f);
                 setLoyal(stack, !isLoyal(stack));
@@ -206,9 +176,8 @@ public class NebulonItem extends TridentItem implements Vanishable{
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Right Click to toggle loyalty").formatted(Formatting.GRAY));
-        if(stack.getNbt() != null && isLoyal(stack)){
-            tooltip.add(Text.literal(""));
-            tooltip.add(Text.literal("Loyal").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+        if(isLoyal(stack)){
+            tooltip.add(Text.literal("Loyal\n").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
         }
         super.appendTooltip(stack, world, tooltip, context);
     }

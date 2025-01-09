@@ -1,4 +1,4 @@
-package com.nitron.ordnance.common.items.common;
+package com.nitron.ordnance.common.items;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;

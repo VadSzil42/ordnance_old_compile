@@ -15,6 +15,8 @@ repositories {
 		name = "Terraformers"
 		url = "https://maven.terraformersmc.com/"
 	}
+	maven { url "https://maven.ladysnake.org/releases" }
+	maven { url = "https://api.modrinth.com/maven" }
 }
 
 fabricApi {
@@ -33,6 +35,17 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
+
+
+	modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}")
+	modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
+	modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-world:${project.cca_version}")
+
+	modCompileOnly("maven.modrinth:enchancement:${project.enchancement_version}")
+	modCompileOnly("maven.modrinth:tooltipfix:${project.tooltipfix_version}")
+	modCompileOnly("maven.modrinth:midnightlib:${project.midnightlib_version}")
+	modCompileOnly("com.github.emilyploszaj:step-height-entity-attribute:${project.stepheightattribute_version}")
+
 	
 }
 

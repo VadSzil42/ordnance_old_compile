@@ -2,7 +2,9 @@ package com.nitron.ordnance.client.renderers;
 
 import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.client.models.NebulonModel;
+import com.nitron.ordnance.client.models.PhantasmModel;
 import com.nitron.ordnance.common.entities.projectiles.NebulonEntity;
+import com.nitron.ordnance.common.entities.projectiles.PhantasmEntity;
 import com.nitron.ordnance.compat.EnchancementCompat;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -13,22 +15,22 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
-public class NebulonRenderer extends EntityRenderer<NebulonEntity> {
+public class PhantasmRenderer extends EntityRenderer<PhantasmEntity> {
     private static final Identifier TEXTURE = new Identifier(Ordnance.MOD_ID, "textures/entity/nebulon.png");
-    private final NebulonModel model;
+    private final PhantasmModel model;
 
-    public NebulonRenderer(EntityRendererFactory.Context ctx) {
+    public PhantasmRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
-        this.model = new NebulonModel(NebulonModel.getTexturedModelData().createModel());
+        this.model = new PhantasmModel(PhantasmModel.getTexturedModelData().createModel());
     }
 
     @Override
-    public Identifier getTexture(NebulonEntity entity) {
+    public Identifier getTexture(PhantasmEntity entity) {
         return TEXTURE;
     }
 
     @Override
-    public void render(NebulonEntity tridentEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+    public void render(PhantasmEntity tridentEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         if (EnchancementCompat.tryRenderLeechTrident(tridentEntity, matrixStack, vertexConsumerProvider, model, getTexture(tridentEntity), i,
                 () -> super.render(tridentEntity, f, g, matrixStack, vertexConsumerProvider, i))) {
             return;

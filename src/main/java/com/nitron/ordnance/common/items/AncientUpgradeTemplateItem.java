@@ -1,4 +1,4 @@
-package com.nitron.ordnance.common.items.smithing;
+package com.nitron.ordnance.common.items;
 
 import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.text.Text;

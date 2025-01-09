@@ -8,8 +8,8 @@
   "item.ordnance.six-shooter": "Six-Shooter",
   "item.ordnance.nebulon": "Nebulon",
 
-  "item.ordnance.smithing_template.ancient_upgrade.apply_to": "Tridents",
-  "item.ordnance.smithing_template.ancient_upgrade.ingredients": "Ignited Idols",
+  "item.ordnance.smithing_template.ancient_upgrade.apply_to": "Trident",
+  "item.ordnance.smithing_template.ancient_upgrade.ingredients": "Ignited Idol",
   "upgrade.ordnance.ancient_upgrade": "Ancient Upgrade",
 
   "sound.ordnance.six_shooter_reload": "Six-Shooter reloads",

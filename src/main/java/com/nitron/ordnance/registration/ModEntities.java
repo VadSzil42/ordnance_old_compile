@@ -22,9 +22,20 @@ public class ModEntities {
                     .build()
     );
 
-    public static final EntityType<NebulonEntity> NEBULARK = Registry.register(
+    public static final EntityType<NebulonEntity> PHANTASM = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(Ordnance.MOD_ID, "nebulark"),
+            new Identifier(Ordnance.MOD_ID, "phantasm"),
+            FabricEntityTypeBuilder.<NebulonEntity>create(SpawnGroup.MISC, NebulonEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
+                    .trackRangeBlocks(64)
+                    .trackedUpdateRate(10)
+                    .fireImmune()
+                    .build()
+    );
+
+    public static final EntityType<NebulonEntity> NEBULON = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(Ordnance.MOD_ID, "nebulon"),
             FabricEntityTypeBuilder.<NebulonEntity>create(SpawnGroup.MISC, NebulonEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
                     .trackRangeBlocks(64)

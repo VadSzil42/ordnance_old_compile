@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DAD",
+    "DBD",
+    "DDD"
+  ],
+  "key": {
+    "A": {
+      "item": "ordnance:ancient_upgrade_template"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    }
+  },
+  "result": {
+    "item": "ordnance:ancient_upgrade_template",
+    "count": 2
+  }
+}

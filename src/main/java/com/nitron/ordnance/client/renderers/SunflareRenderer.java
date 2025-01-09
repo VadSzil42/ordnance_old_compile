@@ -3,6 +3,7 @@ package com.nitron.ordnance.client.renderers;
 import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.client.models.SunflareModel;
 import com.nitron.ordnance.common.entities.projectiles.SunflareEntity;
+import com.nitron.ordnance.compat.EnchancementCompat;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.debug.LightDebugRenderer;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -31,7 +32,10 @@ public class SunflareRenderer extends EntityRenderer<SunflareEntity> {
 
     @Override
     public void render(SunflareEntity tridentEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        super.render(tridentEntity, f, g, matrixStack, vertexConsumerProvider, i);
+        if (EnchancementCompat.tryRenderLeechTrident(tridentEntity, matrixStack, vertexConsumerProvider, model, getTexture(tridentEntity), i,
+                () -> super.render(tridentEntity, f, g, matrixStack, vertexConsumerProvider, i))) {
+            return;
+        }
         matrixStack.push();
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, tridentEntity.prevYaw, tridentEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, tridentEntity.prevPitch, tridentEntity.getPitch()) + 90.0F));
