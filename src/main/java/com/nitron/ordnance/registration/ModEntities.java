@@ -22,10 +22,10 @@ public class ModEntities {
                     .build()
     );
 
-    public static final EntityType<NebulonEntity> PHANTASM = Registry.register(
+    public static final EntityType<PhantasmEntity> PHANTASM = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(Ordnance.MOD_ID, "phantasm"),
-            FabricEntityTypeBuilder.<NebulonEntity>create(SpawnGroup.MISC, NebulonEntity::new)
+            FabricEntityTypeBuilder.<PhantasmEntity>create(SpawnGroup.MISC, PhantasmEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
                     .trackRangeBlocks(64)
                     .trackedUpdateRate(10)

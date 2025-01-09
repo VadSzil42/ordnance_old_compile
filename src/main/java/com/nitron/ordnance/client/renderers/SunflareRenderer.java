@@ -5,7 +5,6 @@ import com.nitron.ordnance.client.models.SunflareModel;
 import com.nitron.ordnance.common.entities.projectiles.SunflareEntity;
 import com.nitron.ordnance.compat.EnchancementCompat;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.debug.LightDebugRenderer;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -13,8 +12,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
 
 public class SunflareRenderer extends EntityRenderer<SunflareEntity> {
     private static final Identifier TEXTURE = new Identifier(Ordnance.MOD_ID, "textures/entity/sunflare.png");

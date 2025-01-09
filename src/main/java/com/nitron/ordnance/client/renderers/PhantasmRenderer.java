@@ -1,9 +1,7 @@
 package com.nitron.ordnance.client.renderers;
 
 import com.nitron.ordnance.Ordnance;
-import com.nitron.ordnance.client.models.NebulonModel;
 import com.nitron.ordnance.client.models.PhantasmModel;
-import com.nitron.ordnance.common.entities.projectiles.NebulonEntity;
 import com.nitron.ordnance.common.entities.projectiles.PhantasmEntity;
 import com.nitron.ordnance.compat.EnchancementCompat;
 import net.minecraft.client.render.*;

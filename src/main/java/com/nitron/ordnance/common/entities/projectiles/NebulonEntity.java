@@ -41,8 +41,8 @@ public class NebulonEntity extends TridentEntity {
         }
     }
 
-    public NebulonEntity(EntityType<NebulonEntity> nebularkEntityEntityType, World world) {
-        super(nebularkEntityEntityType, world);
+    public NebulonEntity(EntityType<NebulonEntity> nebulonEntityEntityType, World world) {
+        super(nebulonEntityEntityType, world);
         if(this.nebulonStack == null){
             this.nebulonStack = new ItemStack(ModItems.NEBULON);
         }

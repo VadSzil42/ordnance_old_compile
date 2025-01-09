@@ -11,10 +11,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +22,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class PhantasmEntity extends TridentEntity {
     private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(PhantasmEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -33,7 +30,7 @@ public class PhantasmEntity extends TridentEntity {
     public int returnTimer;
 
     public PhantasmEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(ModEntities.NEBULON, world);
+        super(ModEntities.PHANTASM, world);
         this.phantasmStack = stack;
         this.setOwner(owner);
         if(this.phantasmStack == null){
@@ -42,8 +39,8 @@ public class PhantasmEntity extends TridentEntity {
         this.noClip = true;
     }
 
-    public PhantasmEntity(EntityType<NebulonEntity> nebularkEntityEntityType, World world) {
-        super(nebularkEntityEntityType, world);
+    public PhantasmEntity(EntityType<PhantasmEntity> phantasmEntityEntityType, World world) {
+        super(phantasmEntityEntityType, world);
         if (this.phantasmStack == null){
             this.phantasmStack = new ItemStack(ModItems.PHANTASM);
         }
