@@ -26,6 +26,13 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
     }
 
+    @ModifyArgs(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+    private void ordnance$baseballBatBlockingDurability(Args args) {
+        if (this.getMainHandStack().isOf(ModItems.BASEBALL_BAT) && getActiveItem().isOf(ModItems.BASEBALL_BAT)) {
+            args.set(0, ModItems.BASEBALL_BAT);
+        }
+    }
+
     /*@ModifyReturnValue(method = "getOffGroundSpeed", at = @At("RETURN"))
     public float ordnance$highAirSpeed(float original) {
         if(this.hasStatusEffect(StatusEffects.GLOWING))

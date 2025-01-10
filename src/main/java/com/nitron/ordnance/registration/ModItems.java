@@ -26,7 +26,7 @@ public class ModItems {
     public static Item PHANTASM = registerItem("phantasm", new PhantasmItem(new FabricItemSettings().maxCount(1).maxDamage(250)));
     public static Item NEBULON = registerItem("nebulon", new NebulonItem(new FabricItemSettings().maxCount(1).maxDamage(250)));
     public static Item IGNITED_IDOL = registerItem("ignited_idol", new Item(new FabricItemSettings().maxCount(16)));
-    public static Item SPRING_HAMMER = registerItem("spring_hammer", new SpringHammerItem(ToolMaterials.DIAMOND, 4, -2.4F, new FabricItemSettings()));
+    public static Item SPRING_HAMMER = registerItem("spring_hammer", new SpringHammerItem(ToolMaterials.DIAMOND, 6, -2.4F, new FabricItemSettings()));
     public static Item ANCIENT_UPGRADE_TEMPLATE = registerItem("ancient_upgrade_template", AncientUpgradeTemplateItem.createAncientUpgrade());
     public static Item SIX_SHOOTER = registerItem("six-shooter", new SixShooterItem(new FabricItemSettings().maxCount(1)));
     public static Item BASEBALL_BAT = registerItem("baseball_bat", new BaseballBatItem(ToolMaterials.WOOD, 5, -2.4F, new FabricItemSettings().maxCount(1)));
