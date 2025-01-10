@@ -42,8 +42,11 @@ public class DynamiteProjectileEntity extends ThrownItemEntity {
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         if(!this.getWorld().isClient()){
-            if(this.getWorld() instanceof ServerWorld serverWorld){
+            if (this.getWorld() instanceof ServerWorld serverWorld && !this.isSubmergedInWater()) {
                 boom();
+            }
+            else if (this.isSubmergedInWater()) { // prevents dynamite from detonating in water
+                this.discard();
             }
         }
         super.onBlockHit(blockHitResult);
@@ -52,11 +55,11 @@ public class DynamiteProjectileEntity extends ThrownItemEntity {
     @Override
     public void tick() {
         int maxAge = 20;
-        if(this.getWorld() instanceof ServerWorld serverWorld){
+        if (this.getWorld() instanceof ServerWorld serverWorld && !this.isSubmergedInWater()) {
             serverWorld.spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
         }
-        if(age > maxAge){
-            if(this.getWorld() instanceof ServerWorld world){
+        if (age > maxAge) {
+            if (this.getWorld() instanceof ServerWorld world && !this.isSubmergedInWater()) {
                 boom();
             }
         }
