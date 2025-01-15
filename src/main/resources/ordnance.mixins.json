@@ -3,13 +3,17 @@
   "package": "com.nitron.ordnance.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AnvilMixin",
+    "BlockMixin",
+    "EntityMixin",
+    "FallingBlockEntityMixin",
     "PlayerEntityMixin"
   ],
   "client": [
-    "ItemRendererAccessor",
-    "ItemRendererMixin",
-    "ModelLoaderMixin",
-    "PlayerEntityRendererMixin"
+    "client.ItemRendererAccessor",
+    "client.ItemRendererMixin",
+    "client.ModelLoaderMixin",
+    "client.PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

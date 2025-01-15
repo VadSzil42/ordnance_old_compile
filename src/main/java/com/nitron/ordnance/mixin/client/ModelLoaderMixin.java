@@ -1,4 +1,4 @@
-package com.nitron.ordnance.mixin;
+package com.nitron.ordnance.mixin.client;
 
 import com.nitron.ordnance.Ordnance;
 import net.minecraft.client.color.block.BlockColors;
@@ -30,5 +30,6 @@ public abstract class ModelLoaderMixin {
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld_flipped", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_handheld", "inventory"));
         this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_blocking", "inventory"));
+        this.addModel(new ModelIdentifier(Ordnance.MOD_ID, "scythe_handheld", "inventory"));
     }
 }

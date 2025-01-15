@@ -2,6 +2,8 @@ package com.nitron.ordnance;
 
 import com.nitron.ordnance.client.particles.BeamParticle;
 import com.nitron.ordnance.client.particles.ConfettiParticle;
+import com.nitron.ordnance.client.particles.HitBoomParticle;
+import com.nitron.ordnance.client.particles.ZeroSweepParticle;
 import com.nitron.ordnance.client.renderers.BulletEntityRenderer;
 import com.nitron.ordnance.client.renderers.NebulonRenderer;
 import com.nitron.ordnance.client.renderers.PhantasmRenderer;
@@ -25,5 +27,7 @@ public class OrdnanceClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(Ordnance.CONFETTI, ConfettiParticle.DefaultFactory::new);
         ParticleFactoryRegistry.getInstance().register(Ordnance.BEAM, BeamParticle.DefaultFactory::new);
+        ParticleFactoryRegistry.getInstance().register(Ordnance.HIT_BOOM, HitBoomParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(Ordnance.SWEEP0, ZeroSweepParticle.Factory::new);
     }
 }

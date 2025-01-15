@@ -26,6 +26,8 @@ public class Ordnance implements ModInitializer {
 
 	public static DefaultParticleType CONFETTI;
 	public static DefaultParticleType BEAM;
+	public static DefaultParticleType HIT_BOOM;
+	public static DefaultParticleType SWEEP0;
 
 	@Override
 	public void onInitialize() {
@@ -59,6 +61,8 @@ public class Ordnance implements ModInitializer {
 
 		CONFETTI = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "confetti"), FabricParticleTypes.simple(true));
 		BEAM = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "beam"), FabricParticleTypes.simple(true));
+		HIT_BOOM = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "hit_boom"), FabricParticleTypes.simple(true));
+		SWEEP0 = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Ordnance.MOD_ID, "0sweep"), FabricParticleTypes.simple(true));
 	}
 
 	public static final SoundEvent spring_hammer_squeak = registerSound("spring_hammer_squeak");

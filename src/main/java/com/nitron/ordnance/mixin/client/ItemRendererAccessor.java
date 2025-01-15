@@ -1,4 +1,4 @@
-package com.nitron.ordnance.mixin;
+package com.nitron.ordnance.mixin.client;
 
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;

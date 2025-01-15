@@ -1,4 +1,4 @@
-package com.nitron.ordnance.mixin;
+package com.nitron.ordnance.mixin.client;
 
 import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.registration.ModItems;
@@ -30,7 +30,7 @@ public abstract class ItemRendererMixin {
     }
 
     @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
-    public BakedModel useNebularkModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public BakedModel useNebulonModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (stack.isOf(ModItems.NEBULON) && renderMode != ModelTransformationMode.GUI && renderMode != ModelTransformationMode.GROUND) {
             if(MinecraftClient.getInstance().player.isUsingItem()){
                 return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "nebulon_handheld_flipped", "inventory"));
@@ -52,11 +52,15 @@ public abstract class ItemRendererMixin {
     @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
     public BakedModel useBaseballBatModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (stack.isOf(ModItems.BASEBALL_BAT) && renderMode != ModelTransformationMode.GUI && renderMode != ModelTransformationMode.GROUND) {
-            if(MinecraftClient.getInstance().player.isUsingItem()){
-                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_blocking", "inventory"));
-            } else{
-                return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_handheld", "inventory"));
-            }
+            return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "baseball_bat_handheld", "inventory"));
+        }
+        return value;
+    }
+
+    @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
+    public BakedModel useScytheModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        if (stack.isOf(ModItems.SCYTHE) && renderMode != ModelTransformationMode.GUI && renderMode != ModelTransformationMode.GROUND) {
+            return ((ItemRendererAccessor) this).ordnance$getModels().getModelManager().getModel(new ModelIdentifier(Ordnance.MOD_ID, "scythe_handheld", "inventory"));
         }
         return value;
     }

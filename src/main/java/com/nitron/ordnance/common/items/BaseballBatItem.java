@@ -1,11 +1,16 @@
 package com.nitron.ordnance.common.items;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Equipment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -21,25 +26,11 @@ public class BaseballBatItem extends SwordItem implements Equipment {
         return EquipmentSlot.MAINHAND;
     }
 
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BLOCK;
-    }
-
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 72000;
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        if(hand == Hand.MAIN_HAND){
-            user.setCurrentHand(hand);
-            return TypedActionResult.consume(itemStack);
-        }
-        else {
-            return TypedActionResult.pass(itemStack);
-        }
-    }
+    /*@Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        entity.addVelocity(0, 1, 0);
+        entity.velocityModified = true;
+        entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 0.8F);
+        return super.useOnEntity(stack, user, entity, hand);
+    }*/ //There is no reason to turn this on unless you want to be silly, gay, and fun.
 }

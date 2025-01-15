@@ -1,15 +1,7 @@
 package com.nitron.ordnance.registration;
 
 import com.nitron.ordnance.Ordnance;
-import com.nitron.ordnance.common.items.ConfettiBomb;
-import com.nitron.ordnance.common.items.Dynamite;
-import com.nitron.ordnance.common.items.BaseballBatItem;
-import com.nitron.ordnance.common.items.SixShooterItem;
-import com.nitron.ordnance.common.items.SpringHammerItem;
-import com.nitron.ordnance.common.items.AncientUpgradeTemplateItem;
-import com.nitron.ordnance.common.items.NebulonItem;
-import com.nitron.ordnance.common.items.PhantasmItem;
-import com.nitron.ordnance.common.items.SunflareItem;
+import com.nitron.ordnance.common.items.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
@@ -30,7 +22,7 @@ public class ModItems {
     public static Item ANCIENT_UPGRADE_TEMPLATE = registerItem("ancient_upgrade_template", AncientUpgradeTemplateItem.createAncientUpgrade());
     public static Item SIX_SHOOTER = registerItem("six-shooter", new SixShooterItem(new FabricItemSettings().maxCount(1)));
     public static Item BASEBALL_BAT = registerItem("baseball_bat", new BaseballBatItem(ToolMaterials.WOOD, 5, -2.4F, new FabricItemSettings().maxCount(1)));
-
+    public static Item SCYTHE = registerItem("scythe", new ScytheItem(ToolMaterials.NETHERITE, 5, -3, new FabricItemSettings().fireproof()));
     public static Item CONFETTI_BOMB = registerItem("confetti_bomb", new ConfettiBomb(new FabricItemSettings().maxCount(16)));
     public static Item DYNAMITE = registerItem("dynamite", new Dynamite(new FabricItemSettings().maxCount(16)));
 
@@ -48,6 +40,7 @@ public class ModItems {
             entries.addBefore(Items.SHIELD, SPRING_HAMMER);
             entries.addBefore(Items.SHIELD, BASEBALL_BAT);
             entries.addBefore(Items.BOW, SIX_SHOOTER);
+            entries.addAfter(Items.NETHERITE_SWORD, SCYTHE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ANCIENT_UPGRADE_TEMPLATE);

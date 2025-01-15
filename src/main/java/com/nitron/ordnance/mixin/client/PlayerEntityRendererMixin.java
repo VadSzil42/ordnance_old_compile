@@ -1,4 +1,4 @@
-package com.nitron.ordnance.mixin;
+package com.nitron.ordnance.mixin.client;
 
 import com.nitron.ordnance.common.items.BaseballBatItem;
 import com.nitron.ordnance.common.items.SixShooterItem;
@@ -28,11 +28,6 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
     private static void ordnance$getArmPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.getItem() instanceof BaseballBatItem) {
-            if (player.isUsingItem()) {
-                cir.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
-            }
-        }
         if (itemStack.getItem() instanceof SixShooterItem) {
             if (!player.isUsingItem()) {
                 cir.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);

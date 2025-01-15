@@ -1,6 +1,7 @@
 package com.nitron.ordnance.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.nitron.ordnance.Ordnance;
 import com.nitron.ordnance.registration.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,19 +20,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @ModifyArgs(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/ItemCooldownManager;set(Lnet/minecraft/item/Item;I)V"))
-    private void ordnance$axeDisablesBaseballBat(Args args) {
-        if (this.getMainHandStack().isOf(ModItems.BASEBALL_BAT) && getActiveItem().isOf(ModItems.BASEBALL_BAT)) {
-            args.set(0, ModItems.BASEBALL_BAT);
-        }
-    }
-
-    @ModifyArgs(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private void ordnance$baseballBatBlockingDurability(Args args) {
-        if (this.getMainHandStack().isOf(ModItems.BASEBALL_BAT) && getActiveItem().isOf(ModItems.BASEBALL_BAT)) {
-            args.set(0, ModItems.BASEBALL_BAT);
-        }
-    }
 
     /*@ModifyReturnValue(method = "getOffGroundSpeed", at = @At("RETURN"))
     public float ordnance$highAirSpeed(float original) {
@@ -41,4 +29,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         return original;
     }*/
 
+
+    @ModifyArgs(method = "spawnSweepAttackParticles", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
+    private void ordnance$zeroSweepParticles(Args args){
+        if(this.getMainHandStack().isOf(ModItems.SCYTHE)){
+            args.set(0, Ordnance.SWEEP0);
+        }
+    }
 }
