@@ -55,6 +55,19 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<ScytheProjectileEntity> SCYTHE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(Ordnance.MOD_ID, "scythe"),
+            FabricEntityTypeBuilder.<ScytheProjectileEntity>create(SpawnGroup.MISC, ScytheProjectileEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
+                    .trackRangeBlocks(64)
+                    .disableSaving()
+                    .trackedUpdateRate(1)
+                    .build()
+    );
+
+
+
     public static final EntityType<ConfettiBombProjectileEntity> CONFETTI_BOMB = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(Ordnance.MOD_ID, "confetti_bomb"), FabricEntityTypeBuilder.<ConfettiBombProjectileEntity>create(SpawnGroup.MISC, ConfettiBombProjectileEntity::new)
                     .dimensions(EntityDimensions.fixed(.25f, .25f)).build());

@@ -4,10 +4,7 @@ import com.nitron.ordnance.client.particles.BeamParticle;
 import com.nitron.ordnance.client.particles.ConfettiParticle;
 import com.nitron.ordnance.client.particles.HitBoomParticle;
 import com.nitron.ordnance.client.particles.ZeroSweepParticle;
-import com.nitron.ordnance.client.renderers.BulletEntityRenderer;
-import com.nitron.ordnance.client.renderers.NebulonRenderer;
-import com.nitron.ordnance.client.renderers.PhantasmRenderer;
-import com.nitron.ordnance.client.renderers.SunflareRenderer;
+import com.nitron.ordnance.client.renderers.*;
 import com.nitron.ordnance.registration.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -24,6 +21,7 @@ public class OrdnanceClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.BULLET, BulletEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CONFETTI_BOMB, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.DYNAMITE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SCYTHE, ScytheProjectileEntityRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(Ordnance.CONFETTI, ConfettiParticle.DefaultFactory::new);
         ParticleFactoryRegistry.getInstance().register(Ordnance.BEAM, BeamParticle.DefaultFactory::new);

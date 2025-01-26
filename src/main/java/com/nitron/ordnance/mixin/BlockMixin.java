@@ -19,17 +19,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(AbstractBlock.class)
+@Mixin(Block.class)
 public class BlockMixin {
-    /*@Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
-    public void ordnance$use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir){
-        if(!world.isClient && player.getStackInHand(Hand.MAIN_HAND).isOf(ModItems.BASEBALL_BAT)){
-            FallingBlockEntity anvil = FallingBlockEntity.spawnFromBlock(world, pos, state);
-            anvil.addVelocity(0, 1, 0);
-            anvil.velocityModified = true;
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 0.8F);
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            cir.setReturnValue(ActionResult.FAIL);
-        }
-    }*/ //you want that block of dirt to launch upwards for some reason? now you can. well done.
+    @Inject(method = "getSlipperiness", at = @At("HEAD"), cancellable = true)
+    public void ordnance$use(CallbackInfoReturnable<Float> cir){
+        cir.setReturnValue(0.99F);
+    } //you want that block of dirt to launch upwards for some reason? now you can. well done.
+
+    @Inject(method = "getJumpVelocityMultiplier", at = @At("HEAD"), cancellable = true)
+    public void ordnance$1(CallbackInfoReturnable<Float> cir){
+        cir.setReturnValue(2F);
+    }
 }

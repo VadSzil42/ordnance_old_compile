@@ -1,7 +1,10 @@
 package com.nitron.ordnance;
 
+import com.nitron.ordnance.cca.ScytheComponent;
 import com.nitron.ordnance.registration.ModEntities;
 import com.nitron.ordnance.registration.ModItems;
+import dev.onyxstudios.cca.api.v3.component.ComponentKey;
+import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
@@ -74,6 +77,7 @@ public class Ordnance implements ModInitializer {
 		Identifier identifier = Identifier.of(MOD_ID, id);
 		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
 	}
+
 
 	public static Identifier id(String path) {
 		return new Identifier(MOD_ID, path);

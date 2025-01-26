@@ -20,15 +20,13 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
-
-    /*@ModifyReturnValue(method = "getOffGroundSpeed", at = @At("RETURN"))
+    @ModifyReturnValue(method = "getOffGroundSpeed", at = @At("RETURN"))
     public float ordnance$highAirSpeed(float original) {
         if(this.hasStatusEffect(StatusEffects.GLOWING))
-            return (float) (original * 3.5); // for future plans... /nefarious
+            return (float) (original * 5); // for future plans... /nefarious
 
         return original;
-    }*/
-
+    }
 
     @ModifyArgs(method = "spawnSweepAttackParticles", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
     private void ordnance$zeroSweepParticles(Args args){

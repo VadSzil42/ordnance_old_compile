@@ -5,13 +5,9 @@
 	"name": "Ordnance",
 	"description": "Adds various cool and unique weaponry to the game!",
 	"authors": [
-		"n1tr0n__ (Owner)",
-		"TheTrueYak (Developer)"
+		"n1tr0n__",
+		"TheTrueYak"
 	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
 	"license": "CC0-1.0",
 	"icon": "assets/ordnance/icon.png",
 	"environment": "*",
@@ -22,8 +18,8 @@
 		"client": [
 			"com.nitron.ordnance.OrdnanceClient"
 		],
-		"fabric-datagen": [
-			"com.nitron.ordnance.OrdnanceDataGenerator"
+		"cardinal-components": [
+			"com.nitron.ordnance.cca.OrdnanceComponents"
 		]
 	},
 	"mixins": [
@@ -34,6 +30,11 @@
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"ordnance:scythe"
+		]
 	},
 	"suggests": {
 		"another-mod": "*"
